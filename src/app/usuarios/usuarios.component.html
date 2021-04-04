@@ -1,1 +1,70 @@
-<p>usuarios works!</p>
+<div>
+  <h1>Bienvenido</h1>
+</div>
+
+<div class="row">
+
+  <div class="card col m-2" style="width: 30rem;">
+    <div class="card-body">
+      <h5 class="card-title">Datos Personales</h5>
+      <div>
+        <ul>
+          <li>
+            Nombre: {{ usuario.primerNombre }} {{ usuario.segundoNombre }} {{ usuario.primerApellido }} {{ usuario.segundoApellido}}
+          </li>
+          <li>
+            Run: {{ usuario.run }}
+          </li>
+
+          <li>
+            Estado Civil: {{ usuario.estadoCivil }}
+          </li>
+          <li>
+            Nacionalidad: {{ usuario.nacionalidad }}
+          </li>
+          <li>
+            Fecha de Nacimiento: {{ usuario.fechaNacimiento }}
+          </li>
+        </ul>
+      </div>
+
+      <button type="button" class="btn btn-warning">Editar</button>
+
+    </div>
+  </div>
+
+  <div class="card col m-2" style="width: 30rem;">
+    <div class="card-body">
+      <h5 class="card-title">Contacto</h5>
+      <div>
+        <ul>
+          <li>
+            Email: {{ usuario.email }}
+          </li>
+          <li>
+            Direccion: {{ usuario.calle }} {{ usuario.numero }}, {{ usuario.ciudad }}
+          </li>
+          <li>
+            Telefono: {{ usuario.telefono }}
+          </li>
+        </ul>
+      </div>
+
+      <button type="button" class="btn btn-warning">Editar</button>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="card col m-2">
+  <div class="card-body">
+    <h5 class="card-title">Presentacion</h5>
+    <div class="m-2">
+      {{ usuario.presentacion }}
+    </div>
+
+    <button type="button" class="btn btn-warning">Editar</button>
+
+  </div>
+</div>

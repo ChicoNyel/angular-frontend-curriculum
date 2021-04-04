@@ -1,1 +1,22 @@
-<p>listado works!</p>
+<div>
+  <h1>Conocimientos</h1>
+</div>
+
+<div class="card col m-2" *ngFor="let conocimiento of usuario.conocimientos; let i=index">
+  <div class="card-body">
+    <h5 class="card-title">Conocimiento {{ i + 1 }}</h5>
+    <div>
+      <ul>
+        <li>
+          Descripcion: {{ conocimiento.descripcion }}
+        </li>
+        <li>
+          Autoevaluacion: {{ conocimiento.autoevaluacion }}
+        </li>
+      </ul>
+    </div>
+
+    <button type="button" class="btn btn-warning">Editar</button>
+
+  </div>
+</div>

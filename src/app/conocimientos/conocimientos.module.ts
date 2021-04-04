@@ -10,7 +10,8 @@ import { ListadoComponent } from './pages/listado/listado.component';
 @NgModule({
   declarations: [
     AgregarComponent,
-    ListadoComponent],
+    ListadoComponent
+  ],
   imports: [
     CommonModule,
     ConocimientosRoutingModule,

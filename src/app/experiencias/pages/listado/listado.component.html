@@ -1,1 +1,28 @@
-<p>listado works!</p>
+<div>
+  <h1>Experiencias</h1>
+</div>
+
+<div class="card col m-2" *ngFor="let experiencia of usuario.experiencias; let i=index">
+  <div class="card-body">
+    <h5 class="card-title">Experiencia {{ i + 1 }}</h5>
+    <div>
+      <ul>
+        <li>
+          Fecha Inicio: {{ experiencia.fechaInicio }}
+        </li>
+        <li>
+          Fecha Termino: {{ experiencia.fechaTermino }}
+        </li>
+        <li>
+          Lugar: {{ experiencia.lugar }}
+        </li>
+        <li>
+          Descripcion: {{ experiencia.descripcion }}
+        </li>
+      </ul>
+    </div>
+
+    <button type="button" class="btn btn-warning">Editar</button>
+
+  </div>
+</div>

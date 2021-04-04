@@ -6,15 +6,18 @@ import { ListadoComponent } from './pages/listado/listado.component';
 const routes: Routes = [
   {
     path: '',
-    component: ListadoComponent,
     children: [
+      {
+        path: 'listado',
+        component: ListadoComponent
+      },
       {
         path: 'agregar',
         component: AgregarComponent
       },
       {
         path: '**',
-        redirectTo: ''
+        redirectTo: 'listado'
       }
     ]
   }
@@ -23,9 +26,6 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(routes)
-  ],
-  exports: [
-    RouterModule
   ]
 })
 export class EstudiosRoutingModule { }

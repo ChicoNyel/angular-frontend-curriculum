@@ -1,1 +1,31 @@
-<p>listado works!</p>
+<div>
+  <h1>Estudios</h1>
+</div>
+
+<div class="card col m-2" *ngFor="let estudio of usuario.estudios; let i=index">
+  <div class="card-body">
+    <h5 class="card-title">Estudio {{ i + 1 }}</h5>
+    <div>
+      <ul>
+        <li>
+          Fecha Inicio: {{ estudio.fechaInicio }}
+        </li>
+        <li>
+          Fecha Termino: {{ estudio.fechaTermino }}
+        </li>
+        <li>
+          Lugar: {{ estudio.lugar }}
+        </li>
+        <li>
+          Tipo: {{ estudio.tipo }}
+        </li>
+        <li>
+          Titulo: {{ estudio.titulo }}
+        </li>
+      </ul>
+    </div>
+
+    <button type="button" class="btn btn-warning">Editar</button>
+
+  </div>
+</div>
