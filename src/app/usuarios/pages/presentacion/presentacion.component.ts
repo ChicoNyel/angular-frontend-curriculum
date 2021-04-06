@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import swal from 'sweetalert2';
+
 import { UsuarioService } from '../../services/usuario.service';
 import { Usuario } from '../../usuario';
 
@@ -13,7 +16,10 @@ export class PresentacionComponent implements OnInit {
 
   public usuario: Usuario = new Usuario();
 
+  public errores: string[];
+
   constructor( private usuarioService: UsuarioService,
+               private router: Router,
                private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit(): void {
@@ -29,6 +35,22 @@ export class PresentacionComponent implements OnInit {
         )
       }
     })
+  }
+
+  update(): void {
+
+    this.usuarioService.update( this.usuario )
+      .subscribe( json => {
+        this.router.navigate(['/usuarios/listado'])
+        swal('Usuario Actualizado', `${ json.mensaje } : ${ json.usuario.primerNombre }`, 'success')
+      },
+      err => {
+        this.errores = err.error.errors as string[];
+        console.error('Codigo del error desde el backend: ' + err.status);
+        console.error(err.error.errors);
+      }
+      );
+
   }
 
 }
