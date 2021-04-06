@@ -7,16 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ConocimientosModule } from './conocimientos/conocimientos.module';
 import { EstudiosModule } from './estudios/estudios.module';
+import { UsuariosModule } from './usuarios/usuarios.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
-    UsuariosComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +24,7 @@ import { EstudiosModule } from './estudios/estudios.module';
     ConocimientosModule,
     EstudiosModule,
     ExperienciasRoutingModule,
+    UsuariosModule,
     HttpClientModule
   ],
   providers: [],

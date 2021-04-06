@@ -1,1 +1,83 @@
-<p>agregar Conocimientos works!</p>
+
+<ul class="alert alert-danger"
+*ngIf="errores?.length > 0" >
+<li *ngFor="let err of errores">
+{{ err }}
+</li>
+</ul>
+
+<div class="card bg-dark text-white">
+
+<div class="card-header"> Formulario Conocimiento </div>
+
+<div class="card-body">
+
+<form #conocimientoForm="ngForm"
+      autocomplete="off">
+
+  <div class="form-group row mb-3">
+    <label for="nombre" class="col-form-label col-sm-2">Descripcion</label>
+    <div class="col-sm-6">
+
+      <input type="text"
+             class="form-control"
+             [(ngModel)]="conocimiento.descripcion"
+             name="descripcion"
+             #descripcion="ngModel"
+             placeholder="Java">
+
+      <div class="alert alert-danger"
+           *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+        <div *ngIf="descripcion.errors.required" >
+          descripcion es requerido
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="nombre" class="col-form-label col-sm-2">Autoevaluacion</label>
+    <div class="col-sm-6">
+
+      <input type="number"
+             class="form-control"
+             [(ngModel)]="conocimiento.autoevaluacion"
+             name="autoevaluacion"
+             #autoevaluacion="ngModel"
+             placeholder="9">
+
+      <div class="alert alert-danger"
+           *ngIf="autoevaluacion.invalid && (autoevaluacion.dirty || autoevaluacion.touched)">
+        <div *ngIf="autoevaluacion.errors.required" >
+          autoevaluacion es requerido
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-6">
+
+      <button class="btn btn-primary"
+              type="button"
+              (click)="create()"
+              *ngIf="!conocimiento.id else elseBlock"
+              [disabled]="!conocimientoForm.form.valid">Crear</button>
+
+      <ng-template #elseBlock>
+        <button class="btn btn-primary"
+              type="button"
+              (click)="update()"
+              [disabled]="!conocimientoForm.form.valid">Editar</button>
+      </ng-template>
+
+    </div>
+  </div>
+
+</form>
+
+</div>
+
+</div>

@@ -28,7 +28,12 @@
         </ul>
       </div>
 
-      <button type="button" class="btn btn-warning">Editar</button>
+      <button type="button"
+              name="editar"
+              [routerLink]="[ '/usuarios/personales' , usuario.id ]"
+              class="btn btn-warning m-1">
+        Editar
+      </button>
 
     </div>
   </div>
@@ -50,7 +55,12 @@
         </ul>
       </div>
 
-      <button type="button" class="btn btn-warning">Editar</button>
+      <button type="button"
+            name="editar"
+            [routerLink]="[ '/usuarios/contacto' , usuario.id ]"
+            class="btn btn-warning m-1">
+        Editar
+      </button>
 
     </div>
   </div>
@@ -64,7 +74,12 @@
       {{ usuario.presentacion }}
     </div>
 
-    <button type="button" class="btn btn-warning">Editar</button>
+    <button type="button"
+            name="editar"
+            [routerLink]="[ '/usuarios/presentacion' , usuario.id ]"
+            class="btn btn-warning m-1">
+        Editar
+    </button>
 
   </div>
 </div>

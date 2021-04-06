@@ -2,6 +2,12 @@
   <h1>Estudios</h1>
 </div>
 
+<div class="my-2 text-left">
+  <button class="btn btn-rounded btn-primary"
+          type="button"
+          (click)="agregar()">Agregar Estudio</button>
+</div>
+
 <div class="card col m-2" *ngFor="let estudio of usuario.estudios; let i=index">
   <div class="card-body">
     <h5 class="card-title">Estudio {{ i + 1 }}</h5>
@@ -25,7 +31,19 @@
       </ul>
     </div>
 
-    <button type="button" class="btn btn-warning">Editar</button>
+    <button type="button"
+            name="editar"
+            [routerLink]="[ '/estudios/agregar' , estudio.id ]"
+            class="btn btn-warning m-1">
+        Editar
+    </button>
+
+    <button type="button"
+            name="eliminar"
+            (click)="delete( estudio )"
+            class="btn btn-danger m-1">
+        Eliminar
+    </button>
 
   </div>
 </div>

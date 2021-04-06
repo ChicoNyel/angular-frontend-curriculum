@@ -1,1 +1,144 @@
-<p>agregar Estudios works!</p>
+
+<ul class="alert alert-danger"
+*ngIf="errores?.length > 0" >
+<li *ngFor="let err of errores">
+{{ err }}
+</li>
+</ul>
+
+<div class="card bg-dark text-white">
+
+<div class="card-header"> Formulario Estudio </div>
+
+<div class="card-body">
+
+<form #estudioForm="ngForm"
+      autocomplete="off">
+
+  <div class="form-group row mb-3">
+    <label for="nombre" class="col-form-label col-sm-2">Fecha Inicio</label>
+    <div class="col-sm-6">
+
+      <input type="date"
+             class="form-control"
+             [(ngModel)]="estudio.fechaInicio"
+             name="fechaInicio"
+             #fechaInicio="ngModel">
+
+      <div class="alert alert-danger"
+           *ngIf="fechaInicio.invalid && (fechaInicio.dirty || fechaInicio.touched)">
+        <div *ngIf="fechaInicio.errors.required" >
+          fechaInicio es requerido
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="nombre" class="col-form-label col-sm-2">Fecha Termino</label>
+    <div class="col-sm-6">
+
+      <input type="date"
+             class="form-control"
+             [(ngModel)]="estudio.fechaTermino"
+             name="fechaTermino"
+             #fechaTermino="ngModel">
+
+      <div class="alert alert-danger"
+           *ngIf="fechaTermino.invalid && (fechaTermino.dirty || fechaTermino.touched)">
+        <div *ngIf="fechaTermino.errors.required" >
+          fechaTermino es requerido
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="nombre" class="col-form-label col-sm-2">Lugar</label>
+    <div class="col-sm-6">
+
+      <input type="text"
+             class="form-control"
+             [(ngModel)]="estudio.lugar"
+             name="lugar"
+             #lugar="ngModel"
+             placeholder="Universidad del Bio-Bio">
+
+      <div class="alert alert-danger"
+           *ngIf="lugar.invalid && (lugar.dirty || lugar.touched)">
+        <div *ngIf="lugar.errors.required" >
+          lugar es requerido
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="tipo" class="col-form-label col-sm-2">Tipo</label>
+    <div class="col-sm-6">
+
+      <input type="text"
+             class="form-control"
+             [(ngModel)]="estudio.tipo"
+             name="tipo"
+             #tipo="ngModel"
+             placeholder="Universitario o Certificacion">
+
+      <div class="alert alert-danger"
+           *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)">
+        <div *ngIf="tipo.errors.required" >
+          tipo es requerido
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="nombre" class="col-form-label col-sm-2">Titulo</label>
+    <div class="col-sm-6">
+
+      <input type="text"
+             class="form-control"
+             [(ngModel)]="estudio.titulo"
+             name="titulo"
+             #titulo="ngModel"
+             placeholder="Ingeniero Civil Informatico"> <!-- required minlength="4" -->
+
+      <div class="alert alert-danger"
+           *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)">
+        <div *ngIf="titulo.errors.required" >
+          titulo es requerido
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-6">
+
+      <button class="btn btn-primary"
+              type="button"
+              (click)="create()"
+              *ngIf="!estudio.id else elseBlock"
+              [disabled]="!estudioForm.form.valid">Crear</button>
+
+      <ng-template #elseBlock>
+        <button class="btn btn-primary"
+              type="button"
+              (click)="update()"
+              [disabled]="!estudioForm.form.valid">Editar</button>
+      </ng-template>
+
+    </div>
+  </div>
+
+</form>
+
+</div>
+
+</div>

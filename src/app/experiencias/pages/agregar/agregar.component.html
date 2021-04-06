@@ -1,1 +1,123 @@
-<p>agregar Experiencias works!</p>
+
+<ul class="alert alert-danger"
+*ngIf="errores?.length > 0" >
+<li *ngFor="let err of errores">
+{{ err }}
+</li>
+</ul>
+
+<div class="card bg-dark text-white">
+
+<div class="card-header"> Formulario Experiencia </div>
+
+<div class="card-body">
+
+<form #experienciaForm="ngForm"
+      autocomplete="off">
+
+  <div class="form-group row mb-3">
+    <label for="nombre" class="col-form-label col-sm-2">Fecha Inicio</label>
+    <div class="col-sm-6">
+
+      <input type="date"
+             class="form-control"
+             [(ngModel)]="experiencia.fechaInicio"
+             name="fechaInicio"
+             #fechaInicio="ngModel">
+
+      <div class="alert alert-danger"
+           *ngIf="fechaInicio.invalid && (fechaInicio.dirty || fechaInicio.touched)">
+        <div *ngIf="fechaInicio.errors.required" >
+          fechaInicio es requerido
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="nombre" class="col-form-label col-sm-2">Fecha Termino</label>
+    <div class="col-sm-6">
+
+      <input type="date"
+             class="form-control"
+             [(ngModel)]="experiencia.fechaTermino"
+             name="fechaTermino"
+             #fechaTermino="ngModel">
+
+      <div class="alert alert-danger"
+           *ngIf="fechaTermino.invalid && (fechaTermino.dirty || fechaTermino.touched)">
+        <div *ngIf="fechaTermino.errors.required" >
+          fechaTermino es requerido
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="nombre" class="col-form-label col-sm-2">Lugar</label>
+    <div class="col-sm-6">
+
+      <input type="text"
+             class="form-control"
+             [(ngModel)]="experiencia.lugar"
+             name="lugar"
+             #lugar="ngModel"
+             placeholder="Universitario de Concepción"> <!-- required minlength="4" -->
+
+      <div class="alert alert-danger"
+           *ngIf="lugar.invalid && (lugar.dirty || lugar.touched)">
+        <div *ngIf="lugar.errors.required" >
+          lugar es requerido
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="nombre" class="col-form-label col-sm-2">Descripcion</label>
+    <div class="col-sm-6">
+
+      <input type="text"
+             class="form-control"
+             [(ngModel)]="experiencia.descripcion"
+             name="descripcion"
+             #descripcion="ngModel"
+             placeholder="Aprendí bastante durante este periodo y mejoré mis habilidades blandas"> <!-- required minlength="4" -->
+
+      <div class="alert alert-danger"
+           *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+        <div *ngIf="descripcion.errors.required" >
+          descripcion es requerido
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-6">
+
+      <button class="btn btn-primary"
+              type="button"
+              (click)="create()"
+              *ngIf="!experiencia.id else elseBlock"
+              [disabled]="!experienciaForm.form.valid">Crear</button>
+
+      <ng-template #elseBlock>
+        <button class="btn btn-primary"
+              type="button"
+              (click)="update()"
+              [disabled]="!experienciaForm.form.valid">Editar</button>
+      </ng-template>
+
+    </div>
+  </div>
+
+</form>
+
+</div>
+
+</div>

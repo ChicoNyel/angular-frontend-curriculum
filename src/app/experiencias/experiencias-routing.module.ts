@@ -16,6 +16,10 @@ const routes: Routes = [
         component: AgregarComponent
       },
       {
+        path: 'agregar/:id',
+        component: AgregarComponent
+      },
+      {
         path: '**',
         redirectTo: 'listado'
       }
@@ -26,6 +30,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(routes)
+  ],
+  exports: [
+    RouterModule
   ]
 })
 export class ExperienciasRoutingModule { }
