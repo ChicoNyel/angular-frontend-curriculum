@@ -24,7 +24,8 @@
               [(ngModel)]="usuario.primerNombre"
               name="primerNombre"
               #primerNombre="ngModel"
-              placeholder="Alan">
+              placeholder="Alan"
+              required>
 
       <div class="alert alert-danger"
             *ngIf="primerNombre.invalid && (primerNombre.dirty || primerNombre.touched)">
@@ -45,7 +46,8 @@
               [(ngModel)]="usuario.segundoNombre"
               name="segundoNombre"
               #segundoNombre="ngModel"
-              placeholder="Andy">
+              placeholder="Andy"
+              required>
 
       <div class="alert alert-danger"
             *ngIf="segundoNombre.invalid && (segundoNombre.dirty || segundoNombre.touched)">
@@ -66,7 +68,8 @@
               [(ngModel)]="usuario.primerApellido"
               name="primerApellido"
               #primerApellido="ngModel"
-              placeholder="Moreno">
+              placeholder="Moreno"
+              required>
 
       <div class="alert alert-danger"
             *ngIf="primerApellido.invalid && (primerApellido.dirty || primerApellido.touched)">
@@ -87,7 +90,8 @@
               [(ngModel)]="usuario.segundoApellido"
               name="segundoApellido"
               #segundoApellido="ngModel"
-              placeholder="Pando">
+              placeholder="Pando"
+              required>
 
       <div class="alert alert-danger"
             *ngIf="segundoApellido.invalid && (segundoApellido.dirty || segundoApellido.touched)">
@@ -108,7 +112,8 @@
              [(ngModel)]="usuario.run"
              name="run"
              #run="ngModel"
-             placeholder="19.414.709-0">
+             placeholder="19.414.709-0"
+             required>
 
       <div class="alert alert-danger"
            *ngIf="run.invalid && (run.dirty || run.touched)">
@@ -129,7 +134,8 @@
               [(ngModel)]="usuario.estadoCivil"
               name="estadoCivil"
               #estadoCivil="ngModel"
-              placeholder="Soltero, Casado, Divorciado o Viudo">
+              placeholder="Soltero, Casado, Divorciado o Viudo"
+              required>
 
       <div class="alert alert-danger"
             *ngIf="estadoCivil.invalid && (estadoCivil.dirty || estadoCivil.touched)">
@@ -150,7 +156,8 @@
               [(ngModel)]="usuario.nacionalidad"
               name="nacionalidad"
               #nacionalidad="ngModel"
-              placeholder="Chileno">
+              placeholder="Chileno"
+              required>
 
       <div class="alert alert-danger"
             *ngIf="nacionalidad.invalid && (nacionalidad.dirty || nacionalidad.touched)">
@@ -170,7 +177,8 @@
               class="form-control"
               [(ngModel)]="usuario.fechaNacimiento"
               name="fechaNacimiento"
-              #fechaNacimiento="ngModel">
+              #fechaNacimiento="ngModel"
+              required>
 
       <div class="alert alert-danger"
             *ngIf="fechaNacimiento.invalid && (fechaNacimiento.dirty || fechaNacimiento.touched)">

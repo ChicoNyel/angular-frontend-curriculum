@@ -14,10 +14,10 @@
     <div>
       <ul>
         <li>
-          Fecha Inicio: {{ experiencia.fechaInicio }}
+          Fecha Inicio: {{ experiencia.fechaInicio | date:"EEEE dd, MMMM yyyy" }}
         </li>
         <li>
-          Fecha Termino: {{ experiencia.fechaTermino }}
+          Fecha Termino: {{ experiencia.fechaTermino | date:"EEEE dd, MMMM yyyy" }}
         </li>
         <li>
           Lugar: {{ experiencia.lugar }}

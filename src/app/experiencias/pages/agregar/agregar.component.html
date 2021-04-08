@@ -23,7 +23,8 @@
              class="form-control"
              [(ngModel)]="experiencia.fechaInicio"
              name="fechaInicio"
-             #fechaInicio="ngModel">
+             #fechaInicio="ngModel"
+             required>
 
       <div class="alert alert-danger"
            *ngIf="fechaInicio.invalid && (fechaInicio.dirty || fechaInicio.touched)">
@@ -43,7 +44,8 @@
              class="form-control"
              [(ngModel)]="experiencia.fechaTermino"
              name="fechaTermino"
-             #fechaTermino="ngModel">
+             #fechaTermino="ngModel"
+             required>
 
       <div class="alert alert-danger"
            *ngIf="fechaTermino.invalid && (fechaTermino.dirty || fechaTermino.touched)">
@@ -64,7 +66,8 @@
              [(ngModel)]="experiencia.lugar"
              name="lugar"
              #lugar="ngModel"
-             placeholder="Universitario de Concepción"> <!-- required minlength="4" -->
+             placeholder="Universitario de Concepción"
+             required> <!-- required minlength="4" -->
 
       <div class="alert alert-danger"
            *ngIf="lugar.invalid && (lugar.dirty || lugar.touched)">
@@ -85,7 +88,8 @@
              [(ngModel)]="experiencia.descripcion"
              name="descripcion"
              #descripcion="ngModel"
-             placeholder="Aprendí bastante durante este periodo y mejoré mis habilidades blandas"> <!-- required minlength="4" -->
+             placeholder="Aprendí bastante durante este periodo y mejoré mis habilidades blandas"
+             required> <!-- required minlength="4" -->
 
       <div class="alert alert-danger"
            *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">

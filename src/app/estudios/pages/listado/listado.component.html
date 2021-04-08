@@ -14,10 +14,10 @@
     <div>
       <ul>
         <li>
-          Fecha Inicio: {{ estudio.fechaInicio }}
+          Fecha Inicio: {{ estudio.fechaInicio | date:"EEEE dd, MMMM yyyy" }}
         </li>
         <li>
-          Fecha Termino: {{ estudio.fechaTermino }}
+          Fecha Termino: {{ estudio.fechaTermino | date:"EEEE dd, MMMM yyyy" }}
         </li>
         <li>
           Lugar: {{ estudio.lugar }}

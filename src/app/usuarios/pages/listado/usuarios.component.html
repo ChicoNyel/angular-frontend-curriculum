@@ -23,7 +23,7 @@
             Nacionalidad: {{ usuario.nacionalidad }}
           </li>
           <li>
-            Fecha de Nacimiento: {{ usuario.fechaNacimiento }}
+            Fecha de Nacimiento: {{ usuario.fechaNacimiento | date:"EEEE dd, MMMM yyyy" }}
           </li>
         </ul>
       </div>

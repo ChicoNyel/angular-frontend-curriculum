@@ -24,7 +24,8 @@
              [(ngModel)]="conocimiento.descripcion"
              name="descripcion"
              #descripcion="ngModel"
-             placeholder="Java">
+             placeholder="Java"
+             required>
 
       <div class="alert alert-danger"
            *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
@@ -45,7 +46,8 @@
              [(ngModel)]="conocimiento.autoevaluacion"
              name="autoevaluacion"
              #autoevaluacion="ngModel"
-             placeholder="9">
+             placeholder="9"
+             required>
 
       <div class="alert alert-danger"
            *ngIf="autoevaluacion.invalid && (autoevaluacion.dirty || autoevaluacion.touched)">

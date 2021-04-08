@@ -24,7 +24,8 @@
               [(ngModel)]="usuario.presentacion"
               name="presentacion"
               #presentacion="ngModel"
-              placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem placeat, eaque itaque fuga possimus dolorum perspiciatis iste! Voluptas nam ab vel, tenetur voluptates dolorum magni possimus, repellat assumenda, perferendis recusandae.">
+              placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem placeat, eaque itaque fuga possimus dolorum perspiciatis iste! Voluptas nam ab vel, tenetur voluptates dolorum magni possimus, repellat assumenda, perferendis recusandae."
+              required>
 
       <div class="alert alert-danger"
             *ngIf="presentacion.invalid && (presentacion.dirty || presentacion.touched)">

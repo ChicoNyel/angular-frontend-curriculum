@@ -24,7 +24,8 @@
               [(ngModel)]="usuario.email"
               name="email"
               #email="ngModel"
-              placeholder="Barca3420@gmail.com">
+              placeholder="Barca3420@gmail.com"
+              required>
 
       <div class="alert alert-danger"
             *ngIf="email.invalid && (email.dirty || email.touched)">
@@ -45,7 +46,8 @@
               [(ngModel)]="usuario.calle"
               name="calle"
               #calle="ngModel"
-              placeholder="Cerro Alto">
+              placeholder="Cerro Alto"
+              required>
 
       <div class="alert alert-danger"
             *ngIf="calle.invalid && (calle.dirty || calle.touched)">
@@ -66,7 +68,8 @@
               [(ngModel)]="usuario.numero"
               name="numero"
               #numero="ngModel"
-              placeholder="191">
+              placeholder="191"
+              required>
 
       <div class="alert alert-danger"
             *ngIf="numero.invalid && (numero.dirty || numero.touched)">
@@ -87,7 +90,8 @@
               [(ngModel)]="usuario.ciudad"
               name="ciudad"
               #ciudad="ngModel"
-              placeholder="+56948651020">
+              placeholder="+56948651020"
+              required>
 
       <div class="alert alert-danger"
             *ngIf="ciudad.invalid && (ciudad.dirty || ciudad.touched)">
@@ -108,7 +112,8 @@
              [(ngModel)]="usuario.telefono"
              name="telefono"
              #telefono="ngModel"
-             placeholder="+56948651020">
+             placeholder="+56948651020"
+             required>
 
       <div class="alert alert-danger"
            *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">

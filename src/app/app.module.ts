@@ -1,7 +1,11 @@
 import { ExperienciasRoutingModule } from './experiencias/experiencias-routing.module';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+
+import { registerLocaleData } from '@angular/common';
+import localeES from '@angular/common/locales/es';
+registerLocaleData(localeES, 'es');
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +31,9 @@ import { UsuariosModule } from './usuarios/usuarios.module';
     UsuariosModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'es'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

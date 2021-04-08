@@ -64,7 +64,8 @@
              [(ngModel)]="estudio.lugar"
              name="lugar"
              #lugar="ngModel"
-             placeholder="Universidad del Bio-Bio">
+             placeholder="Universidad del Bio-Bio"
+             required>
 
       <div class="alert alert-danger"
            *ngIf="lugar.invalid && (lugar.dirty || lugar.touched)">
@@ -85,7 +86,8 @@
              [(ngModel)]="estudio.tipo"
              name="tipo"
              #tipo="ngModel"
-             placeholder="Universitario o Certificacion">
+             placeholder="Universitario o Certificacion"
+             required>
 
       <div class="alert alert-danger"
            *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)">
@@ -106,7 +108,8 @@
              [(ngModel)]="estudio.titulo"
              name="titulo"
              #titulo="ngModel"
-             placeholder="Ingeniero Civil Informatico"> <!-- required minlength="4" -->
+             placeholder="Ingeniero Civil Informatico"
+             required> <!-- required minlength="4" -->
 
       <div class="alert alert-danger"
            *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)">
