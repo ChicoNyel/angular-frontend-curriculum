@@ -173,12 +173,15 @@
     <label for="fechaNacimiento" class="col-form-label col-sm-2">Fecha de Nacimiento</label>
     <div class="col-sm-6">
 
-      <input type="date"
-              class="form-control"
-              [(ngModel)]="usuario.fechaNacimiento"
-              name="fechaNacimiento"
-              #fechaNacimiento="ngModel"
-              required>
+      <input matInput [matDatepicker]="picker"
+             class="form-control"
+             style="display: inline; width: 300px;"
+             [(ngModel)]="usuario.fechaNacimiento"
+             name="fechaNacimiento"
+             #fechaNacimiento="ngModel"
+             required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
 
       <div class="alert alert-danger"
             *ngIf="fechaNacimiento.invalid && (fechaNacimiento.dirty || fechaNacimiento.touched)">

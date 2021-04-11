@@ -1,0 +1,57 @@
+<div class="card bg-dark text-white">
+
+  <div class="card-header"> Detalles del Usuario </div>
+
+  <div class="card-body">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+
+          <ul *ngIf="usuario" class="list-group text-dark mb-3">
+
+            <li class="list-group-item active">
+              {{ usuario.primerNombre }} {{ usuario.segundoNombre }} {{ usuario.primerApellido }} {{ usuario.segundoApellido}}
+            </li>
+
+            <li class="list-group-item">
+              {{ usuario.run }}
+            </li>
+
+            <li class="list-group-item">
+              {{ usuario.estadoCivil }}
+            </li>
+
+            <li class="list-group-item">
+              {{ usuario.nacionalidad }}
+            </li>
+
+            <li class="list-group-item">
+              {{ usuario.fechaNacimiento | date:"EEEE dd, MMMM yyyy" }}
+            </li>
+
+          </ul>
+
+          <div class="input-group mb-3">
+            <input (change)="seleccionarFoto($event)" type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+            <button (click)="subirFoto()" [disabled]="!fotoSeleccionada" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Subir</button>
+          </div>
+
+          <div *ngIf="progreso > 0"  class="progress" style="height: 40px;">
+            <div class="progress-bar progress-bar-striped" role="progressbar" [ngStyle]="{width:progreso + '%'}" attr.aria-valuenow="{{ progreso }}" aria-valuemin="0" aria-valuemax="100">
+              {{ progreso }}%
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm">
+          <img *ngIf="usuario?.imagen"  src="http://localhost:8080/api/usuarios/uploads/img/{{ usuario.imagen }}" alt="{{ usuario.imagen }}" class="img-thumbnail rounded">
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+</div>

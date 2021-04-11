@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ConocimientosModule } from './conocimientos/conocimientos.module';
 import { EstudiosModule } from './estudios/estudios.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { UsuariosModule } from './usuarios/usuarios.module';
     EstudiosModule,
     ExperienciasRoutingModule,
     UsuariosModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es'}
