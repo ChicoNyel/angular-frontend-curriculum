@@ -4,7 +4,6 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
 import { DatosPersonalesComponent } from './pages/datos-personales/datos-personales.component';
 import { PresentacionComponent } from './pages/presentacion/presentacion.component';
 import { UsuariosComponent } from './pages/listado/usuarios.component';
-import { DetalleComponent } from './pages/detalle/detalle.component';
 
 const routes: Routes = [
   {
@@ -25,10 +24,6 @@ const routes: Routes = [
       {
         path: 'presentacion/:id',
         component: PresentacionComponent
-      },
-      {
-        path: 'ver/:id',
-        component: DetalleComponent
       },
       {
         path: '**',

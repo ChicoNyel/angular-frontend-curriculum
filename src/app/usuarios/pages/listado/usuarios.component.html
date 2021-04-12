@@ -1,3 +1,5 @@
+<detalle-usuario *ngIf="usuarioSeleccionado" [usuario]="usuarioSeleccionado"></detalle-usuario>
+
 <div>
   <h1>Bienvenido</h1>
 </div>
@@ -6,7 +8,7 @@
 
   <div class="card col m-2" style="width: 30rem;">
     <div class="card-body">
-      <h5 class="card-title">Datos Personales</h5>
+      <h2 class="card-title">Datos Personales</h2>
       <div>
         <ul>
           <li>
@@ -35,19 +37,41 @@
         Editar
       </button>
 
-      <button type="button"
-              name="detalles"
-              [routerLink]="[ '/usuarios/ver' , usuario.id ]"
-              class="btn btn-primary m-1">
-        Detalles
-      </button>
-
     </div>
   </div>
 
   <div class="card col m-2" style="width: 30rem;">
+
     <div class="card-body">
-      <h5 class="card-title">Contacto</h5>
+      <h2 class="card-title">Foto de Perfil</h2>
+
+        <img    *ngIf="usuario?.imagen"
+                (click)="abrirModal(usuario)"
+                src="http://localhost:8080/api/usuarios/uploads/img/{{ usuario.imagen }}"
+                alt="{{ usuario.imagen }}"
+                class="img-thumbnail rounded"
+                style="cursor: pointer;">
+
+        <img    *ngIf="!usuario?.imagen"
+                (click)="abrirModal(usuario)"
+                src="http://localhost:8080/images/no-usuario.png"
+                alt="Sin foto"
+                class="img-thumbnail rounded"
+                style="cursor: pointer;">
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+<div class="row">
+
+  <div class="card col m-2" style="width: 30rem;">
+    <div class="card-body">
+      <h2 class="card-title">Contacto</h2>
       <div>
         <ul>
           <li>
@@ -72,21 +96,21 @@
     </div>
   </div>
 
-</div>
+  <div class="card col m-2" style="width: 30rem;">
+    <div class="card-body">
+      <h2 class="card-title">Presentacion</h2>
+      <div class="m-2">
+        {{ usuario.presentacion }}
+      </div>
 
-<div class="card col m-2">
-  <div class="card-body">
-    <h5 class="card-title">Presentacion</h5>
-    <div class="m-2">
-      {{ usuario.presentacion }}
+      <button type="button"
+              name="editar"
+              [routerLink]="[ '/usuarios/presentacion' , usuario.id ]"
+              class="btn btn-warning m-1">
+          Editar
+      </button>
+
     </div>
-
-    <button type="button"
-            name="editar"
-            [routerLink]="[ '/usuarios/presentacion' , usuario.id ]"
-            class="btn btn-warning m-1">
-        Editar
-    </button>
-
   </div>
+
 </div>
