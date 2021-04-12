@@ -21,7 +21,7 @@ export class UsuariosComponent implements OnInit {
     this.usuarioService.getUsuario( 1 ).subscribe( (usuario) => this.usuario = usuario );
 
     this.modalService.notificarUpload.subscribe( usuario => {
-      this.usuario = usuario.foto;
+      this.usuario = usuario;
     })
 
   }
