@@ -16,21 +16,23 @@
       autocomplete="off">
 
   <div class="form-group row mb-3">
-    <label for="nombre" class="col-form-label col-sm-2">Descripcion</label>
+    <label for="tecnologia" class="col-form-label col-sm-2">Tecnologia</label>
     <div class="col-sm-6">
 
-      <input type="text"
-             class="form-control"
-             [(ngModel)]="conocimiento.descripcion"
-             name="descripcion"
-             #descripcion="ngModel"
-             placeholder="Java"
-             required>
+      <select [compareWith]="compararTecnologia"
+              class="form-control"
+              [(ngModel)]="conocimiento.tecnologia"
+              name="tecnologia"
+              #tecnologia="ngModel"
+              required>
+        <option [ngValue]="undefined">--- seleccionar una tecnologia ---</option>
+        <option *ngFor="let tecnologia of tecnologias" [ngValue]="tecnologia">{{ tecnologia.nombre }} - {{ tecnologia.lenguaje }} </option>
+      </select>
 
       <div class="alert alert-danger"
-           *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
-        <div *ngIf="descripcion.errors.required" >
-          descripcion es requerido
+            *ngIf="tecnologia.invalid && (tecnologia.dirty || tecnologia.touched)">
+        <div *ngIf="tecnologia.errors.required" >
+          tecnologia es requerido
         </div>
       </div>
 

@@ -27,8 +27,15 @@ export class Usuario {
 
 export class Conocimiento {
   id:             number;
-  descripcion:    string;
+  tecnologia:     Tecnologia;
   autoevaluacion: number;
+}
+
+export class Tecnologia {
+  id:       number;
+  nombre:   string;
+  lenguaje: string;
+  tipo:     string;
 }
 
 export class Estudio {

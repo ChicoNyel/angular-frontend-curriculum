@@ -10,11 +10,17 @@
 
 <div class="card col m-2" *ngFor="let conocimiento of usuario.conocimientos; let i=index">
   <div class="card-body">
-    <h5 class="card-title">Conocimiento {{ i + 1 }}</h5>
+    <h2 class="card-title">Conocimiento {{ i + 1 }}</h2>
     <div>
       <ul>
         <li>
-          Descripcion: {{ conocimiento.descripcion }}
+          Nombre: {{ conocimiento.tecnologia.nombre }}
+        </li>
+        <li>
+          Lenguaje: {{ conocimiento.tecnologia.lenguaje }}
+        </li>
+        <li>
+          Tipo: {{ conocimiento.tecnologia.tipo }}
         </li>
         <li>
           Autoevaluacion: {{ conocimiento.autoevaluacion }}

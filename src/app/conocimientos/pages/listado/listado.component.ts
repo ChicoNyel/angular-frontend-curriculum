@@ -33,7 +33,7 @@ export class ListadoComponent implements OnInit {
 
     swal({
       title: 'Está seguro?',
-      text: `¿Seguro que desea eliminar el conocimiento ${conocimiento.descripcion}?`,
+      text: `¿Seguro que desea eliminar el conocimiento ${conocimiento.tecnologia.nombre}?`,
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -54,7 +54,7 @@ export class ListadoComponent implements OnInit {
 
             swal(
               'Conocimiento Eliminado!',
-              `Conocimiento ${conocimiento.descripcion} eliminado con éxito.`,
+              `Conocimiento ${conocimiento.tecnologia.nombre} eliminado con éxito.`,
               'success'
             )
           }

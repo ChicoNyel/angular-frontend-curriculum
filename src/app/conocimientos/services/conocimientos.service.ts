@@ -7,7 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import swal from 'sweetalert2';
 
-import { Conocimiento } from 'src/app/usuarios/usuario';
+import { Conocimiento, Tecnologia } from 'src/app/usuarios/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,10 @@ export class ConocimientosService {
 
   constructor( private http: HttpClient,
                private router: Router ) { }
+
+  getTecnologias(): Observable<Tecnologia[]> {
+    return this.http.get<Tecnologia[]>(this.urlEndPoint + '/tecnologias');
+  }
 
   getConocimiento(id: number): Observable<Conocimiento> {
     return this.http.get<Conocimiento>( `${ this.urlEndPoint }/${ id }` )

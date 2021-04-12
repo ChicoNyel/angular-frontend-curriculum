@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 
 import { Conocimiento } from 'src/app/usuarios/usuario';
 import { ConocimientosService } from '../../services/conocimientos.service';
+import { Tecnologia } from '../../../usuarios/usuario';
 
 @Component({
   selector: 'app-agregar',
@@ -13,6 +14,7 @@ import { ConocimientosService } from '../../services/conocimientos.service';
 export class AgregarComponent implements OnInit {
 
   public conocimiento: Conocimiento = new Conocimiento();
+  public tecnologias: Tecnologia[];
 
   public errores: string[];
 
@@ -22,6 +24,7 @@ export class AgregarComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarConocimiento();
+    this.conocimientoService.getTecnologias().subscribe( tecnologias => this.tecnologias = tecnologias );
   }
 
   cargarConocimiento(): void {
@@ -40,7 +43,7 @@ export class AgregarComponent implements OnInit {
     this.conocimientoService.create( this.conocimiento )
       .subscribe( conocimiento => {
         this.router.navigate(['/conocimientos/listado'])
-        swal('Nuevo conocimiento', `El conocimiento ${ conocimiento.descripcion } ha sido agregado con éxito`, 'success')
+        swal('Nuevo conocimiento', `El conocimiento ${ conocimiento.tecnologia.nombre } ha sido agregado con éxito`, 'success')
       },
       err => {
         this.errores = err.error.errors as string[];
@@ -56,7 +59,7 @@ export class AgregarComponent implements OnInit {
     this.conocimientoService.update( this.conocimiento )
       .subscribe( json => {
         this.router.navigate(['/conocimientos/listado'])
-        swal('Conocimiento Actualizado', `${ json.mensaje } : ${ json.conocimiento.descripcion }`, 'success')
+        swal('Conocimiento Actualizado', `${ json.mensaje } : ${ json.conocimiento.tecnologia.nombre }`, 'success')
       },
       err => {
         this.errores = err.error.errors as string[];
@@ -65,6 +68,15 @@ export class AgregarComponent implements OnInit {
       }
       );
 
+  }
+
+  compararTecnologia(o1:Tecnologia, o2:Tecnologia):boolean {
+
+    if(o1 === undefined && o2 === undefined){
+      return true;
+    }
+
+    return o1 == null || o2 == null || o1 == undefined || o2 == undefined ? false: o1.id === o2.id;
   }
 
 }
