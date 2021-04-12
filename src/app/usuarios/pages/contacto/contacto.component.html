@@ -12,7 +12,7 @@
 
 <div class="card-body">
 
-<form #usuarioForm="ngForm"
+<form #personaForm="ngForm"
       autocomplete="off">
 
   <div class="form-group row mb-3">
@@ -21,7 +21,7 @@
 
       <input type="text"
               class="form-control"
-              [(ngModel)]="usuario.email"
+              [(ngModel)]="persona.email"
               name="email"
               #email="ngModel"
               placeholder="Barca3420@gmail.com"
@@ -43,7 +43,7 @@
 
       <input type="text"
               class="form-control"
-              [(ngModel)]="usuario.calle"
+              [(ngModel)]="persona.calle"
               name="calle"
               #calle="ngModel"
               placeholder="Cerro Alto"
@@ -65,7 +65,7 @@
 
       <input type="number"
               class="form-control"
-              [(ngModel)]="usuario.numero"
+              [(ngModel)]="persona.numero"
               name="numero"
               #numero="ngModel"
               placeholder="191"
@@ -87,7 +87,7 @@
 
       <input type="text"
               class="form-control"
-              [(ngModel)]="usuario.ciudad"
+              [(ngModel)]="persona.ciudad"
               name="ciudad"
               #ciudad="ngModel"
               placeholder="+56948651020"
@@ -109,7 +109,7 @@
 
       <input type="text"
              class="form-control"
-             [(ngModel)]="usuario.telefono"
+             [(ngModel)]="persona.telefono"
              name="telefono"
              #telefono="ngModel"
              placeholder="+56948651020"
@@ -131,7 +131,7 @@
       <button class="btn btn-primary"
               type="button"
               (click)="update()"
-              [disabled]="!usuarioForm.form.valid">Editar</button>
+              [disabled]="!personaForm.form.valid">Editar</button>
 
     </div>
   </div>

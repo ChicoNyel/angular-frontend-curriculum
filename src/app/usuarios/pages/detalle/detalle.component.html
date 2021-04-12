@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title"> Detalles del Usuario </h2>
+          <h2 class="modal-title"> Detalles de la Persona </h2>
           <button (click)="cerrarModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -13,26 +13,26 @@
             <div class="row">
               <div class="col-sm">
 
-                <ul *ngIf="usuario" class="list-group text-dark mb-3">
+                <ul *ngIf="persona" class="list-group text-dark mb-3">
 
                   <li class="list-group-item active">
-                    {{ usuario.primerNombre }} {{ usuario.segundoNombre }} {{ usuario.primerApellido }} {{ usuario.segundoApellido}}
+                    {{ persona.primerNombre }} {{ persona.segundoNombre }} {{ persona.primerApellido }} {{ persona.segundoApellido}}
                   </li>
 
                   <li class="list-group-item">
-                    {{ usuario.run }}
+                    {{ persona.run }}
                   </li>
 
                   <li class="list-group-item">
-                    {{ usuario.estadoCivil }}
+                    {{ persona.estadoCivil }}
                   </li>
 
                   <li class="list-group-item">
-                    {{ usuario.nacionalidad }}
+                    {{ persona.nacionalidad }}
                   </li>
 
                   <li class="list-group-item">
-                    {{ usuario.fechaNacimiento | date:"EEEE dd, MMMM yyyy" }}
+                    {{ persona.fechaNacimiento | date:"EEEE dd, MMMM yyyy" }}
                   </li>
 
                 </ul>
@@ -50,7 +50,7 @@
 
               </div>
               <div class="col-sm">
-                <img *ngIf="usuario?.imagen"  src="http://localhost:8080/api/usuarios/uploads/img/{{ usuario.imagen }}" alt="{{ usuario.imagen }}" class="img-thumbnail rounded">
+                <img *ngIf="persona?.imagen"  src="http://localhost:8080/api/personas/uploads/img/{{ persona.imagen }}" alt="{{ persona.imagen }}" class="img-thumbnail rounded">
               </div>
             </div>
           </div>

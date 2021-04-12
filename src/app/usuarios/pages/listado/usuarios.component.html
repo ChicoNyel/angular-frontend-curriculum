@@ -1,4 +1,4 @@
-<detalle-usuario *ngIf="usuarioSeleccionado" [usuario]="usuarioSeleccionado"></detalle-usuario>
+<detalle-usuario *ngIf="personaSeleccionado" [persona]="personaSeleccionado"></detalle-usuario>
 
 <div>
   <h1>Bienvenido</h1>
@@ -12,27 +12,27 @@
       <div>
         <ul>
           <li>
-            Nombre: {{ usuario.primerNombre }} {{ usuario.segundoNombre }} {{ usuario.primerApellido }} {{ usuario.segundoApellido}}
+            Nombre: {{ persona.primerNombre }} {{ persona.segundoNombre }} {{ persona.primerApellido }} {{ persona.segundoApellido}}
           </li>
           <li>
-            Run: {{ usuario.run }}
+            Run: {{ persona.run }}
           </li>
 
           <li>
-            Estado Civil: {{ usuario.estadoCivil }}
+            Estado Civil: {{ persona.estadoCivil }}
           </li>
           <li>
-            Nacionalidad: {{ usuario.nacionalidad }}
+            Nacionalidad: {{ persona.nacionalidad }}
           </li>
           <li>
-            Fecha de Nacimiento: {{ usuario.fechaNacimiento | date:"EEEE dd, MMMM yyyy" }}
+            Fecha de Nacimiento: {{ persona.fechaNacimiento | date:"EEEE dd, MMMM yyyy" }}
           </li>
         </ul>
       </div>
 
       <button type="button"
               name="editar"
-              [routerLink]="[ '/usuarios/personales' , usuario.id ]"
+              [routerLink]="[ '/usuarios/personales' , persona.id ]"
               class="btn btn-warning m-1">
         Editar
       </button>
@@ -45,15 +45,15 @@
     <div class="card-body">
       <h2 class="card-title">Foto de Perfil</h2>
 
-        <img    *ngIf="usuario?.imagen"
-                (click)="abrirModal(usuario)"
-                src="http://localhost:8080/api/usuarios/uploads/img/{{ usuario.imagen }}"
-                alt="{{ usuario.imagen }}"
+        <img    *ngIf="persona?.imagen"
+                (click)="abrirModal(persona)"
+                src="http://localhost:8080/api/personas/uploads/img/{{ persona.imagen }}"
+                alt="{{ persona.imagen }}"
                 class="img-thumbnail rounded"
                 style="cursor: pointer;">
 
-        <img    *ngIf="!usuario?.imagen"
-                (click)="abrirModal(usuario)"
+        <img    *ngIf="!persona?.imagen"
+                (click)="abrirModal(persona)"
                 src="http://localhost:8080/images/no-usuario.png"
                 alt="Sin foto"
                 class="img-thumbnail rounded"
@@ -75,20 +75,20 @@
       <div>
         <ul>
           <li>
-            Email: {{ usuario.email }}
+            Email: {{ persona.email }}
           </li>
           <li>
-            Direccion: {{ usuario.calle }} {{ usuario.numero }}, {{ usuario.ciudad }}
+            Direccion: {{ persona.calle }} {{ persona.numero }}, {{ persona.ciudad }}
           </li>
           <li>
-            Telefono: {{ usuario.telefono }}
+            Telefono: {{ persona.telefono }}
           </li>
         </ul>
       </div>
 
       <button type="button"
             name="editar"
-            [routerLink]="[ '/usuarios/contacto' , usuario.id ]"
+            [routerLink]="[ '/usuarios/contacto' , persona.id ]"
             class="btn btn-warning m-1">
         Editar
       </button>
@@ -100,12 +100,12 @@
     <div class="card-body">
       <h2 class="card-title">Presentacion</h2>
       <div class="m-2">
-        {{ usuario.presentacion }}
+        {{ persona.presentacion }}
       </div>
 
       <button type="button"
               name="editar"
-              [routerLink]="[ '/usuarios/presentacion' , usuario.id ]"
+              [routerLink]="[ '/usuarios/presentacion' , persona.id ]"
               class="btn btn-warning m-1">
           Editar
       </button>

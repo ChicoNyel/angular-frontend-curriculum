@@ -1,13 +1,8 @@
-export class Usuario {
+export class Persona {
   id:              number;
   conocimientos:   Conocimiento[];
   estudios:        Estudio[];
   experiencias:    Experiencia[];
-  username:        string;
-  password:        string;
-  enabled:         boolean;
-  fechaRegistro:   Date;
-  roles:           Role[];
   primerNombre:    string;
   segundoNombre:   string;
   primerApellido:  string;
@@ -53,9 +48,4 @@ export class Experiencia {
   lugar:        string;
   fechaInicio:  Date;
   fechaTermino: Date;
-}
-
-export class Role {
-  id:        number;
-  authority: string;
 }

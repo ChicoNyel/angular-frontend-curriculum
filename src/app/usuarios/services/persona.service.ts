@@ -1,31 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
-import { Router } from '@angular/router';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import swal from 'sweetalert2';
-
-import { Usuario } from '../usuario';
+import { Persona } from '../usuario';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class PersonaService {
 
-  private urlEndPoint: string = 'http://localhost:8080/api/usuarios'
+  private urlEndPoint: string = 'http://localhost:8080/api/personas'
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor( private http: HttpClient ) { }
 
-  getUsuario(id: number): Observable<Usuario> {
-    return this.http.get<Usuario>(`${ this.urlEndPoint }/${ id }`);
+  getPersona(id: number): Observable<Persona> {
+    return this.http.get<Persona>(`${ this.urlEndPoint }/${ id }`);
   }
 
-  update(usuario: Usuario): Observable<any> {
-    return this.http.put<any>( `${ this.urlEndPoint }/${ usuario.id }`, usuario, {headers: this.httpHeaders} )
+  update(persona: Persona): Observable<any> {
+    return this.http.put<any>( `${ this.urlEndPoint }/${ persona.id }`, persona, {headers: this.httpHeaders} )
         .pipe(
           catchError( e => {
 

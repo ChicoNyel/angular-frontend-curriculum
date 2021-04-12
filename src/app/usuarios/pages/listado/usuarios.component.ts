@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../../usuario';
 
-import { UsuarioService } from '../../services/usuario.service';
 import { ModalService } from '../../services/modal.service';
+import { PersonaService } from '../../services/persona.service';
+import { Persona } from '../../usuario';
 
 @Component({
   selector: 'app-usuarios',
@@ -10,24 +10,24 @@ import { ModalService } from '../../services/modal.service';
 })
 export class UsuariosComponent implements OnInit {
 
-  public usuario: Usuario = new Usuario();
-  usuarioSeleccionado: Usuario;
+  public persona: Persona = new Persona();
+  personaSeleccionado: Persona;
 
-  constructor( private usuarioService: UsuarioService,
+  constructor( private personaService: PersonaService,
                private modalService: ModalService ) { }
 
   ngOnInit(): void {
 
-    this.usuarioService.getUsuario( 1 ).subscribe( (usuario) => this.usuario = usuario );
+    this.personaService.getPersona( 1 ).subscribe( (persona) => this.persona = persona );
 
-    this.modalService.notificarUpload.subscribe( usuario => {
-      this.usuario = usuario;
+    this.modalService.notificarUpload.subscribe( persona => {
+      this.persona = persona;
     })
 
   }
 
-  abrirModal(usuario: Usuario){
-    this.usuarioSeleccionado = usuario;
+  abrirModal(persona: Persona){
+    this.personaSeleccionado = persona;
     this.modalService.abrirModal();
   }
 

@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 import swal from 'sweetalert2';
 
-import { UsuarioService } from 'src/app/usuarios/services/usuario.service';
-import { Conocimiento, Usuario } from 'src/app/usuarios/usuario';
+import { PersonaService } from 'src/app/usuarios/services/persona.service';
+import { Conocimiento, Persona } from 'src/app/usuarios/usuario';
 import { ConocimientosService } from '../../services/conocimientos.service';
 
 @Component({
@@ -13,15 +13,15 @@ import { ConocimientosService } from '../../services/conocimientos.service';
 })
 export class ListadoComponent implements OnInit {
 
-  public usuario: Usuario = new Usuario();
+  public persona: Persona = new Persona();
   public conocimiento: Conocimiento = new Conocimiento();
 
-  constructor(  private usuarioService: UsuarioService,
+  constructor(  private personaService: PersonaService,
                 private conocimientoService: ConocimientosService,
                 private router: Router ) { }
 
   ngOnInit(): void {
-    this.usuarioService.getUsuario( 1 ).subscribe( (usuario) => this.usuario = usuario );
+    this.personaService.getPersona( 1 ).subscribe( (persona) => this.persona = persona );
   }
 
   agregar() {
@@ -50,7 +50,7 @@ export class ListadoComponent implements OnInit {
         this.conocimientoService.delete(conocimiento.id).subscribe(
           response => {
 
-            this.usuarioService.getUsuario( 1 ).subscribe( (usuario) => this.usuario = usuario );
+            this.personaService.getPersona( 1 ).subscribe( (persona) => this.persona = persona );
 
             swal(
               'Conocimiento Eliminado!',

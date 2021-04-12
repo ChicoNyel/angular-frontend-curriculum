@@ -3,9 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import swal from 'sweetalert2';
 import { ModalService } from '../../services/modal.service';
-
-import { UsuarioService } from '../../services/usuario.service';
-import { Usuario } from '../../usuario';
+import { PersonaService } from '../../services/persona.service';
+import { Persona } from '../../usuario';
 
 @Component({
   selector: 'detalle-usuario',
@@ -14,12 +13,12 @@ import { Usuario } from '../../usuario';
 })
 export class DetalleComponent implements OnInit {
 
-  @Input() usuario: Usuario;
+  @Input() persona: Persona;
 
   fotoSeleccionada: File;
   progreso: number = 0;
 
-  constructor( private usuarioService: UsuarioService,
+  constructor( private personaService: PersonaService,
                public modalService: ModalService ) { }
 
   ngOnInit(): void {
@@ -44,7 +43,7 @@ export class DetalleComponent implements OnInit {
 
     } else {
 
-      this.usuarioService.subirFoto( this.fotoSeleccionada, this.usuario.id )
+      this.personaService.subirFoto( this.fotoSeleccionada, this.persona.id )
       .subscribe( event => {
 
         if(event.type === HttpEventType.UploadProgress){
@@ -54,9 +53,9 @@ export class DetalleComponent implements OnInit {
         } else if(event.type === HttpEventType.Response){
 
           let response: any = event.body;
-          this.usuario = response.usuario as Usuario;
+          this.persona = response.persona as Persona;
 
-          this.modalService.notificarUpload.emit(this.usuario);
+          this.modalService.notificarUpload.emit(this.persona);
 
           swal('La foto se ha subido completamente!', response.mensaje, 'success');
 

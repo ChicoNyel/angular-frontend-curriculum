@@ -12,7 +12,7 @@
 
 <div class="card-body">
 
-<form #usuarioForm="ngForm"
+<form #personaForm="ngForm"
       autocomplete="off">
 
   <div class="form-group row mb-3">
@@ -21,7 +21,7 @@
 
       <input type="text"
               class="form-control"
-              [(ngModel)]="usuario.presentacion"
+              [(ngModel)]="persona.presentacion"
               name="presentacion"
               #presentacion="ngModel"
               placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem placeat, eaque itaque fuga possimus dolorum perspiciatis iste! Voluptas nam ab vel, tenetur voluptates dolorum magni possimus, repellat assumenda, perferendis recusandae."
@@ -43,7 +43,7 @@
       <button class="btn btn-primary"
               type="button"
               (click)="update()"
-              [disabled]="!usuarioForm.form.valid">Editar</button>
+              [disabled]="!personaForm.form.valid">Editar</button>
 
     </div>
   </div>

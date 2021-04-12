@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 import swal from 'sweetalert2';
 
-import { UsuarioService } from 'src/app/usuarios/services/usuario.service';
-import { Experiencia, Usuario } from 'src/app/usuarios/usuario';
+import { PersonaService } from 'src/app/usuarios/services/persona.service';
+import { Experiencia, Persona } from 'src/app/usuarios/usuario';
 import { ExperienciasService } from '../../services/experiencias.service';
 
 @Component({
@@ -13,15 +13,15 @@ import { ExperienciasService } from '../../services/experiencias.service';
 })
 export class ListadoComponent implements OnInit {
 
-  public usuario: Usuario = new Usuario();
+  public persona: Persona = new Persona();
   public experiencia: Experiencia = new Experiencia();
 
-  constructor(  private usuarioService: UsuarioService,
+  constructor(  private personaService: PersonaService,
                 private experienciasService: ExperienciasService,
                 private router: Router ) { }
 
   ngOnInit(): void {
-    this.usuarioService.getUsuario( 1 ).subscribe( (usuario) => this.usuario = usuario );
+    this.personaService.getPersona( 1 ).subscribe( (persona) => this.persona = persona );
   }
 
   agregar() {
@@ -50,7 +50,7 @@ export class ListadoComponent implements OnInit {
         this.experienciasService.delete(experiencia.id).subscribe(
           response => {
 
-            this.usuarioService.getUsuario( 1 ).subscribe( (usuario) => this.usuario = usuario );
+            this.personaService.getPersona( 1 ).subscribe( (persona) => this.persona = persona );
 
             swal(
               'Experiencia Eliminada!',

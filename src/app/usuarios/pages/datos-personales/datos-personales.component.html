@@ -12,7 +12,7 @@
 
 <div class="card-body">
 
-<form #usuarioForm="ngForm"
+<form #personaForm="ngForm"
       autocomplete="off">
 
   <div class="form-group row mb-3">
@@ -21,7 +21,7 @@
 
       <input type="text"
               class="form-control"
-              [(ngModel)]="usuario.primerNombre"
+              [(ngModel)]="persona.primerNombre"
               name="primerNombre"
               #primerNombre="ngModel"
               placeholder="Alan"
@@ -43,7 +43,7 @@
 
       <input type="text"
               class="form-control"
-              [(ngModel)]="usuario.segundoNombre"
+              [(ngModel)]="persona.segundoNombre"
               name="segundoNombre"
               #segundoNombre="ngModel"
               placeholder="Andy"
@@ -65,7 +65,7 @@
 
       <input type="text"
               class="form-control"
-              [(ngModel)]="usuario.primerApellido"
+              [(ngModel)]="persona.primerApellido"
               name="primerApellido"
               #primerApellido="ngModel"
               placeholder="Moreno"
@@ -87,7 +87,7 @@
 
       <input type="text"
               class="form-control"
-              [(ngModel)]="usuario.segundoApellido"
+              [(ngModel)]="persona.segundoApellido"
               name="segundoApellido"
               #segundoApellido="ngModel"
               placeholder="Pando"
@@ -109,7 +109,7 @@
 
       <input type="text"
              class="form-control"
-             [(ngModel)]="usuario.run"
+             [(ngModel)]="persona.run"
              name="run"
              #run="ngModel"
              placeholder="19.414.709-0"
@@ -131,7 +131,7 @@
 
       <input type="text"
               class="form-control"
-              [(ngModel)]="usuario.estadoCivil"
+              [(ngModel)]="persona.estadoCivil"
               name="estadoCivil"
               #estadoCivil="ngModel"
               placeholder="Soltero, Casado, Divorciado o Viudo"
@@ -153,7 +153,7 @@
 
       <input type="text"
               class="form-control"
-              [(ngModel)]="usuario.nacionalidad"
+              [(ngModel)]="persona.nacionalidad"
               name="nacionalidad"
               #nacionalidad="ngModel"
               placeholder="Chileno"
@@ -176,7 +176,7 @@
       <input matInput [matDatepicker]="picker"
              class="form-control"
              style="display: inline; width: 300px;"
-             [(ngModel)]="usuario.fechaNacimiento"
+             [(ngModel)]="persona.fechaNacimiento"
              name="fechaNacimiento"
              #fechaNacimiento="ngModel"
              required>
@@ -199,7 +199,7 @@
       <button class="btn btn-primary"
               type="button"
               (click)="update()"
-              [disabled]="!usuarioForm.form.valid">Editar</button>
+              [disabled]="!personaForm.form.valid">Editar</button>
 
     </div>
   </div>

@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import swal from 'sweetalert2';
 
-import { UsuarioService } from '../../services/usuario.service';
-import { Usuario } from '../../usuario';
+import { PersonaService } from '../../services/persona.service';
+import { Persona } from '../../usuario';
 
 @Component({
   selector: 'app-presentacion',
@@ -14,24 +14,24 @@ import { Usuario } from '../../usuario';
 })
 export class PresentacionComponent implements OnInit {
 
-  public usuario: Usuario = new Usuario();
+  public persona: Persona = new Persona();
 
   public errores: string[];
 
-  constructor( private usuarioService: UsuarioService,
+  constructor( private personaService: PersonaService,
                private router: Router,
                private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this.cargarUsuario();
+    this.cargarPersona();
   }
 
-  cargarUsuario(): void {
+  cargarPersona(): void {
     this.activatedRoute.params.subscribe( params => {
       let id = params['id']
       if( id ){
-        this.usuarioService.getUsuario( id ).subscribe(
-          (usuario) => this.usuario = usuario
+        this.personaService.getPersona( id ).subscribe(
+          (persona) => this.persona = persona
         )
       }
     })
@@ -39,10 +39,10 @@ export class PresentacionComponent implements OnInit {
 
   update(): void {
 
-    this.usuarioService.update( this.usuario )
+    this.personaService.update( this.persona )
       .subscribe( json => {
         this.router.navigate(['/usuarios/listado'])
-        swal('Usuario Actualizado', `${ json.mensaje } : ${ json.usuario.primerNombre }`, 'success')
+        swal('Persona Actualizada', `${ json.mensaje } : ${ json.persona.primerNombre }`, 'success')
       },
       err => {
         this.errores = err.error.errors as string[];

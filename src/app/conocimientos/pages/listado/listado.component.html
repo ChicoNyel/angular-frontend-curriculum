@@ -8,7 +8,7 @@
           (click)="agregar()">Agregar Conocimiento</button>
 </div>
 
-<div class="card col m-2" *ngFor="let conocimiento of usuario.conocimientos; let i=index">
+<div class="card col m-2" *ngFor="let conocimiento of persona.conocimientos; let i=index">
   <div class="card-body">
     <h2 class="card-title">Conocimiento {{ i + 1 }}</h2>
     <div>
