@@ -22,10 +22,23 @@ export class EstudiosService {
   constructor( private http: HttpClient,
                private router: Router ) { }
 
+  private isNoAutorizado(e): boolean {
+    if(e.status==401 || e.status==403){
+      this.router.navigate(['/login'])
+      return true;
+    }
+    return false;
+  }
+
   getEstudio(id: number): Observable<Estudio> {
     return this.http.get<Estudio>( `${ this.urlEndPoint }/${ id }` )
         .pipe(
           catchError( e => {
+
+            if(this.isNoAutorizado(e)){
+              return throwError(e);
+            }
+
             this.router.navigate(['/estudios/listado']);
             console.error(e.error.mensaje);
             swal('Error al editar', e.error.mensaje, 'error');
@@ -39,6 +52,10 @@ export class EstudiosService {
         .pipe(
           map( (response: any) => response.estudio as Estudio ),
           catchError( e => {
+
+            if(this.isNoAutorizado(e)){
+              return throwError(e);
+            }
 
             if( e.status == 400 ){
               return throwError(e);
@@ -56,6 +73,10 @@ export class EstudiosService {
         .pipe(
           catchError( e => {
 
+            if(this.isNoAutorizado(e)){
+              return throwError(e);
+            }
+
             if( e.status == 400 ){
               return throwError(e);
             }
@@ -71,6 +92,11 @@ export class EstudiosService {
     return this.http.delete<Estudio>( `${ this.urlEndPoint }/${ id }`, {headers: this.httpHeaders} )
         .pipe(
           catchError( e => {
+
+            if(this.isNoAutorizado(e)){
+              return throwError(e);
+            }
+
             console.error(e.error.mensaje);
             swal(e.error.mensaje, e.error.error, 'error');
             return throwError(e);

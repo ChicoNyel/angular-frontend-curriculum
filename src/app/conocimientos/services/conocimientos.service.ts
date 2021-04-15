@@ -21,14 +21,32 @@ export class ConocimientosService {
   constructor( private http: HttpClient,
                private router: Router ) { }
 
+  private isNoAutorizado(e): boolean {
+    if(e.status==401 || e.status==403){
+      this.router.navigate(['/login'])
+      return true;
+    }
+    return false;
+  }
+
   getTecnologias(): Observable<Tecnologia[]> {
-    return this.http.get<Tecnologia[]>(this.urlEndPoint + '/tecnologias');
+    return this.http.get<Tecnologia[]>(this.urlEndPoint + '/tecnologias').pipe(
+      catchError(e => {
+        this.isNoAutorizado(e);
+        return throwError(e);
+      })
+    );
   }
 
   getConocimiento(id: number): Observable<Conocimiento> {
     return this.http.get<Conocimiento>( `${ this.urlEndPoint }/${ id }` )
         .pipe(
           catchError( e => {
+
+            if(this.isNoAutorizado(e)){
+              return throwError(e);
+            }
+
             this.router.navigate(['/conocimientos/listado']);
             console.error(e.error.mensaje);
             swal('Error al editar', e.error.mensaje, 'error');
@@ -42,6 +60,10 @@ export class ConocimientosService {
         .pipe(
           map( (response: any) => response.conocimiento as Conocimiento ),
           catchError( e => {
+
+            if(this.isNoAutorizado(e)){
+              return throwError(e);
+            }
 
             if( e.status == 400 ){
               return throwError(e);
@@ -59,6 +81,10 @@ export class ConocimientosService {
         .pipe(
           catchError( e => {
 
+            if(this.isNoAutorizado(e)){
+              return throwError(e);
+            }
+
             if( e.status == 400 ){
               return throwError(e);
             }
@@ -74,6 +100,11 @@ export class ConocimientosService {
     return this.http.delete<Conocimiento>( `${ this.urlEndPoint }/${ id }`, {headers: this.httpHeaders} )
         .pipe(
           catchError( e => {
+
+            if(this.isNoAutorizado(e)){
+              return throwError(e);
+            }
+
             console.error(e.error.mensaje);
             swal(e.error.mensaje, e.error.error, 'error');
             return throwError(e);

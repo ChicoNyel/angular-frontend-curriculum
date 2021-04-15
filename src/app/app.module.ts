@@ -1,6 +1,7 @@
 import { ExperienciasRoutingModule } from './experiencias/experiencias-routing.module';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { registerLocaleData } from '@angular/common';
@@ -15,13 +16,16 @@ import { ConocimientosModule } from './conocimientos/conocimientos.module';
 import { EstudiosModule } from './estudios/estudios.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './seguridad/login.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ExperienciasRoutingModule,
     UsuariosModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es'}

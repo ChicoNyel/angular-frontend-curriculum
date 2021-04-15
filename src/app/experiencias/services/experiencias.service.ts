@@ -21,10 +21,23 @@ export class ExperienciasService {
   constructor( private http: HttpClient,
                private router: Router ) { }
 
+  private isNoAutorizado(e): boolean {
+    if(e.status==401 || e.status==403){
+      this.router.navigate(['/login'])
+      return true;
+    }
+    return false;
+  }
+
   getExperiencia(id: number): Observable<Experiencia> {
     return this.http.get<Experiencia>( `${ this.urlEndPoint }/${ id }` )
         .pipe(
           catchError( e => {
+
+            if(this.isNoAutorizado(e)){
+              return throwError(e);
+            }
+
             this.router.navigate(['/experiencias/listado']);
             console.error(e.error.mensaje);
             swal('Error al editar', e.error.mensaje, 'error');
@@ -38,6 +51,10 @@ export class ExperienciasService {
         .pipe(
           map( (response: any) => response.experiencia as Experiencia ),
           catchError( e => {
+
+            if(this.isNoAutorizado(e)){
+              return throwError(e);
+            }
 
             if( e.status == 400 ){
               return throwError(e);
@@ -55,6 +72,10 @@ export class ExperienciasService {
         .pipe(
           catchError( e => {
 
+            if(this.isNoAutorizado(e)){
+              return throwError(e);
+            }
+
             if( e.status == 400 ){
               return throwError(e);
             }
@@ -70,6 +91,11 @@ export class ExperienciasService {
     return this.http.delete<Experiencia>( `${ this.urlEndPoint }/${ id }`, {headers: this.httpHeaders} )
         .pipe(
           catchError( e => {
+
+            if(this.isNoAutorizado(e)){
+              return throwError(e);
+            }
+
             console.error(e.error.mensaje);
             swal(e.error.mensaje, e.error.error, 'error');
             return throwError(e);
