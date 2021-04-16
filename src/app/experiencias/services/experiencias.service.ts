@@ -8,6 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import swal from 'sweetalert2';
 
 import { Experiencia } from 'src/app/usuarios/usuario';
+import { AuthService } from 'src/app/seguridad/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,16 @@ export class ExperienciasService {
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor( private http: HttpClient,
-               private router: Router ) { }
+               private router: Router,
+               private authService: AuthService ) { }
+
+  private agregarAuthorizationHeader(){
+    let token = this.authService.token;
+    if(token != null){
+      return this.httpHeaders.append('Authorization', 'Bearer ' + token);
+    }
+    return this.httpHeaders;
+  }
 
   private isNoAutorizado(e): boolean {
     if(e.status==401 || e.status==403){
@@ -30,7 +40,7 @@ export class ExperienciasService {
   }
 
   getExperiencia(id: number): Observable<Experiencia> {
-    return this.http.get<Experiencia>( `${ this.urlEndPoint }/${ id }` )
+    return this.http.get<Experiencia>( `${ this.urlEndPoint }/${ id }`, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           catchError( e => {
 
@@ -47,7 +57,7 @@ export class ExperienciasService {
   }
 
   create(experiencia: Experiencia): Observable<Experiencia> {
-    return this.http.post( `${ this.urlEndPoint }/${ 1 }`, experiencia, {headers: this.httpHeaders} )
+    return this.http.post( `${ this.urlEndPoint }/${ 1 }`, experiencia, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           map( (response: any) => response.experiencia as Experiencia ),
           catchError( e => {
@@ -68,7 +78,7 @@ export class ExperienciasService {
   }
 
   update(experiencia: Experiencia): Observable<any> {
-    return this.http.put<any>( `${ this.urlEndPoint }/${ experiencia.id }`, experiencia, {headers: this.httpHeaders} )
+    return this.http.put<any>( `${ this.urlEndPoint }/${ experiencia.id }`, experiencia, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           catchError( e => {
 
@@ -88,7 +98,7 @@ export class ExperienciasService {
   }
 
   delete(id: number): Observable<Experiencia> {
-    return this.http.delete<Experiencia>( `${ this.urlEndPoint }/${ id }`, {headers: this.httpHeaders} )
+    return this.http.delete<Experiencia>( `${ this.urlEndPoint }/${ id }`, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           catchError( e => {
 

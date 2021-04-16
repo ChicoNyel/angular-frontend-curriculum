@@ -8,6 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import swal from 'sweetalert2';
 
 import { Estudio } from 'src/app/usuarios/usuario';
+import { AuthService } from 'src/app/seguridad/auth.service';
 
 
 @Injectable({
@@ -20,7 +21,16 @@ export class EstudiosService {
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor( private http: HttpClient,
-               private router: Router ) { }
+               private router: Router,
+               private authService: AuthService ) { }
+
+  private agregarAuthorizationHeader(){
+    let token = this.authService.token;
+    if(token != null){
+      return this.httpHeaders.append('Authorization', 'Bearer ' + token);
+    }
+    return this.httpHeaders;
+  }
 
   private isNoAutorizado(e): boolean {
     if(e.status==401 || e.status==403){
@@ -31,7 +41,7 @@ export class EstudiosService {
   }
 
   getEstudio(id: number): Observable<Estudio> {
-    return this.http.get<Estudio>( `${ this.urlEndPoint }/${ id }` )
+    return this.http.get<Estudio>( `${ this.urlEndPoint }/${ id }`, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           catchError( e => {
 
@@ -48,7 +58,7 @@ export class EstudiosService {
   }
 
   create(estudio: Estudio): Observable<Estudio> {
-    return this.http.post( `${ this.urlEndPoint }/${ 1 }`, estudio, {headers: this.httpHeaders} )
+    return this.http.post( `${ this.urlEndPoint }/${ 1 }`, estudio, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           map( (response: any) => response.estudio as Estudio ),
           catchError( e => {
@@ -69,7 +79,7 @@ export class EstudiosService {
   }
 
   update(estudio: Estudio): Observable<any> {
-    return this.http.put<any>( `${ this.urlEndPoint }/${ estudio.id }`, estudio, {headers: this.httpHeaders} )
+    return this.http.put<any>( `${ this.urlEndPoint }/${ estudio.id }`, estudio, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           catchError( e => {
 
@@ -89,7 +99,7 @@ export class EstudiosService {
   }
 
   delete(id: number): Observable<Estudio> {
-    return this.http.delete<Estudio>( `${ this.urlEndPoint }/${ id }`, {headers: this.httpHeaders} )
+    return this.http.delete<Estudio>( `${ this.urlEndPoint }/${ id }`, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           catchError( e => {
 

@@ -12,18 +12,28 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-        <li *ngFor="let item of curriculumMenu"
-            class="nav-item">
-          <a class="nav-link"
-             routerLinkActive="active"
-             [routerLink]="[ item.ruta ]">
-                {{ item.texto }}
-          </a>
+        <li *ngIf="authService.isAuthenticated()" class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/personas/listado']">Datos Personales</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated()" class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/conocimientos/listado']">Conocimientos</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated()" class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/estudios/listado']">Estudios</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated()" class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/experiencias/listado']">Experiencias</a>
         </li>
 
+
       </ul>
+
       <ul class="navbar-nav navbar-right">
-        <li><a [routerLink]="['/login']" class="btn btn-outline-primary">Sign In</a></li>
+
+        <li *ngIf="!authService.isAuthenticated()"><a [routerLink]="['/login']" class="btn btn-outline-primary">Sign In</a></li>
+
+        <li *ngIf="authService.isAuthenticated()"> Bienvenido {{ authService.usuario.username }} <button (click)="logout()" class="btn btn-outline-danger" type="submit">Sign Out</button></li>
+
       </ul>
 
     </div>

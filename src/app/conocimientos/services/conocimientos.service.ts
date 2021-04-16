@@ -8,6 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import swal from 'sweetalert2';
 
 import { Conocimiento, Tecnologia } from 'src/app/usuarios/usuario';
+import { AuthService } from 'src/app/seguridad/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,16 @@ export class ConocimientosService {
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor( private http: HttpClient,
-               private router: Router ) { }
+               private router: Router,
+               private authService: AuthService ) { }
+
+  private agregarAuthorizationHeader(){
+    let token = this.authService.token;
+    if(token != null){
+      return this.httpHeaders.append('Authorization', 'Bearer ' + token);
+    }
+    return this.httpHeaders;
+  }
 
   private isNoAutorizado(e): boolean {
     if(e.status==401 || e.status==403){
@@ -30,7 +40,7 @@ export class ConocimientosService {
   }
 
   getTecnologias(): Observable<Tecnologia[]> {
-    return this.http.get<Tecnologia[]>(this.urlEndPoint + '/tecnologias').pipe(
+    return this.http.get<Tecnologia[]>(this.urlEndPoint + '/tecnologias', {headers: this.agregarAuthorizationHeader()} ).pipe(
       catchError(e => {
         this.isNoAutorizado(e);
         return throwError(e);
@@ -39,7 +49,7 @@ export class ConocimientosService {
   }
 
   getConocimiento(id: number): Observable<Conocimiento> {
-    return this.http.get<Conocimiento>( `${ this.urlEndPoint }/${ id }` )
+    return this.http.get<Conocimiento>( `${ this.urlEndPoint }/${ id }`, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           catchError( e => {
 
@@ -56,7 +66,7 @@ export class ConocimientosService {
   }
 
   create(conocimiento: Conocimiento): Observable<Conocimiento> {
-    return this.http.post( `${ this.urlEndPoint }/${ 1 }`, conocimiento, {headers: this.httpHeaders} )
+    return this.http.post( `${ this.urlEndPoint }/${ 1 }`, conocimiento, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           map( (response: any) => response.conocimiento as Conocimiento ),
           catchError( e => {
@@ -77,7 +87,7 @@ export class ConocimientosService {
   }
 
   update(conocimiento: Conocimiento): Observable<any> {
-    return this.http.put<any>( `${ this.urlEndPoint }/${ conocimiento.id }`, conocimiento, {headers: this.httpHeaders} )
+    return this.http.put<any>( `${ this.urlEndPoint }/${ conocimiento.id }`, conocimiento, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           catchError( e => {
 
@@ -97,7 +107,7 @@ export class ConocimientosService {
   }
 
   delete(id: number): Observable<Conocimiento> {
-    return this.http.delete<Conocimiento>( `${ this.urlEndPoint }/${ id }`, {headers: this.httpHeaders} )
+    return this.http.delete<Conocimiento>( `${ this.urlEndPoint }/${ id }`, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           catchError( e => {
 

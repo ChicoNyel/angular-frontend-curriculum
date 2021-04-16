@@ -7,6 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import swal from 'sweetalert2';
 import { Persona } from '../usuario';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/seguridad/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,16 @@ export class PersonaService {
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor( private http: HttpClient,
-               private router: Router ) { }
+               private router: Router,
+               private authService: AuthService ) { }
+
+  private agregarAuthorizationHeader(){
+    let token = this.authService.token;
+    if(token != null){
+      return this.httpHeaders.append('Authorization', 'Bearer ' + token);
+    }
+    return this.httpHeaders;
+  }
 
   private isNoAutorizado(e): boolean {
     if(e.status==401 || e.status==403){
@@ -29,7 +39,8 @@ export class PersonaService {
   }
 
   getPersona(id: number): Observable<Persona> {
-    return this.http.get<Persona>(`${ this.urlEndPoint }/${ id }`).pipe(
+
+    return this.http.get<Persona>(`${ this.urlEndPoint }/${ id }`, {headers: this.agregarAuthorizationHeader()} ).pipe(
       catchError(e => {
         this.isNoAutorizado(e);
         return throwError(e);
@@ -38,7 +49,7 @@ export class PersonaService {
   }
 
   update(persona: Persona): Observable<any> {
-    return this.http.put<any>( `${ this.urlEndPoint }/${ persona.id }`, persona, {headers: this.httpHeaders} )
+    return this.http.put<any>( `${ this.urlEndPoint }/${ persona.id }`, persona, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           catchError( e => {
 
@@ -63,8 +74,16 @@ export class PersonaService {
     formData.append("archivo", archivo);
     formData.append("id", id);
 
+    let httpHeaders = new HttpHeaders();
+    let token = this.authService.token;
+
+    if(token != null){
+      httpHeaders = httpHeaders.append('Authorization', 'Bearer ' + token);
+    }
+
     const req = new HttpRequest('POST', `${ this.urlEndPoint }/upload`, formData, {
-      reportProgress: true
+      reportProgress: true,
+      headers: httpHeaders
     });
 
     return this.http.request( req ).pipe(
