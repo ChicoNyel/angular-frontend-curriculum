@@ -66,7 +66,7 @@ export class ConocimientosService {
   }
 
   create(conocimiento: Conocimiento): Observable<Conocimiento> {
-    return this.http.post( `${ this.urlEndPoint }/${ 1 }`, conocimiento, {headers: this.agregarAuthorizationHeader()} )
+    return this.http.post( `${ this.urlEndPoint }/${ this.authService.usuario.username }`, conocimiento, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           map( (response: any) => response.conocimiento as Conocimiento ),
           catchError( e => {

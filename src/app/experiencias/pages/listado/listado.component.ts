@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import { PersonaService } from 'src/app/usuarios/services/persona.service';
 import { Experiencia, Persona } from 'src/app/usuarios/usuario';
 import { ExperienciasService } from '../../services/experiencias.service';
+import { AuthService } from 'src/app/seguridad/auth.service';
 
 @Component({
   selector: 'app-listado',
@@ -18,10 +19,11 @@ export class ListadoComponent implements OnInit {
 
   constructor(  private personaService: PersonaService,
                 private experienciasService: ExperienciasService,
+                private authService: AuthService,
                 private router: Router ) { }
 
   ngOnInit(): void {
-    this.personaService.getPersona( 1 ).subscribe( (persona) => this.persona = persona );
+    this.personaService.getPersonaByUsername( this.authService.usuario.username ).subscribe( (persona) => this.persona = persona );
   }
 
   agregar() {
@@ -50,7 +52,7 @@ export class ListadoComponent implements OnInit {
         this.experienciasService.delete(experiencia.id).subscribe(
           response => {
 
-            this.personaService.getPersona( 1 ).subscribe( (persona) => this.persona = persona );
+            this.personaService.getPersonaByUsername( this.authService.usuario.username ).subscribe( (persona) => this.persona = persona );
 
             swal(
               'Experiencia Eliminada!',

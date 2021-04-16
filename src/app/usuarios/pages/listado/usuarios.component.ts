@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/seguridad/auth.service';
 
 import { ModalService } from '../../services/modal.service';
 import { PersonaService } from '../../services/persona.service';
@@ -14,11 +15,12 @@ export class UsuariosComponent implements OnInit {
   personaSeleccionado: Persona;
 
   constructor( private personaService: PersonaService,
-               private modalService: ModalService ) { }
+               private modalService: ModalService,
+               private authService: AuthService ) { }
 
   ngOnInit(): void {
 
-    this.personaService.getPersona( 1 ).subscribe( (persona) => this.persona = persona );
+    this.personaService.getPersonaByUsername( this.authService.usuario.username ).subscribe( (persona) => this.persona = persona );
 
     this.modalService.notificarUpload.subscribe( persona => {
       this.persona = persona;

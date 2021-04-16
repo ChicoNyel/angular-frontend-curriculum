@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import { PersonaService } from 'src/app/usuarios/services/persona.service';
 import { Conocimiento, Persona } from 'src/app/usuarios/usuario';
 import { ConocimientosService } from '../../services/conocimientos.service';
+import { AuthService } from 'src/app/seguridad/auth.service';
 
 @Component({
   selector: 'app-listado',
@@ -17,11 +18,12 @@ export class ListadoComponent implements OnInit {
   public conocimiento: Conocimiento = new Conocimiento();
 
   constructor(  private personaService: PersonaService,
+                private authService: AuthService,
                 private conocimientoService: ConocimientosService,
                 private router: Router ) { }
 
   ngOnInit(): void {
-    this.personaService.getPersona( 1 ).subscribe( (persona) => this.persona = persona );
+    this.personaService.getPersonaByUsername( this.authService.usuario.username ).subscribe( (persona) => this.persona = persona );
   }
 
   agregar() {
@@ -50,7 +52,7 @@ export class ListadoComponent implements OnInit {
         this.conocimientoService.delete(conocimiento.id).subscribe(
           response => {
 
-            this.personaService.getPersona( 1 ).subscribe( (persona) => this.persona = persona );
+            this.personaService.getPersonaByUsername( this.authService.usuario.username ).subscribe( (persona) => this.persona = persona );
 
             swal(
               'Conocimiento Eliminado!',

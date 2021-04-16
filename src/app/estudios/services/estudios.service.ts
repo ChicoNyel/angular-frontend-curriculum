@@ -58,7 +58,7 @@ export class EstudiosService {
   }
 
   create(estudio: Estudio): Observable<Estudio> {
-    return this.http.post( `${ this.urlEndPoint }/${ 1 }`, estudio, {headers: this.agregarAuthorizationHeader()} )
+    return this.http.post( `${ this.urlEndPoint }/${ this.authService.usuario.username }`, estudio, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           map( (response: any) => response.estudio as Estudio ),
           catchError( e => {

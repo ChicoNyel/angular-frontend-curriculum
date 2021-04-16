@@ -48,6 +48,16 @@ export class PersonaService {
     );
   }
 
+  getPersonaByUsername(username: string): Observable<Persona> {
+
+    return this.http.get<Persona>(`${ this.urlEndPoint }/showByUsername/${ username }`, {headers: this.agregarAuthorizationHeader()} ).pipe(
+      catchError(e => {
+        this.isNoAutorizado(e);
+        return throwError(e);
+      })
+    );
+  }
+
   update(persona: Persona): Observable<any> {
     return this.http.put<any>( `${ this.urlEndPoint }/${ persona.id }`, persona, {headers: this.agregarAuthorizationHeader()} )
         .pipe(

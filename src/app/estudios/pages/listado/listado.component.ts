@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import { PersonaService } from 'src/app/usuarios/services/persona.service';
 import { Estudio, Persona } from 'src/app/usuarios/usuario';
 import { EstudiosService } from '../../services/estudios.service';
+import { AuthService } from 'src/app/seguridad/auth.service';
 
 @Component({
   selector: 'app-listado',
@@ -18,10 +19,11 @@ export class ListadoComponent implements OnInit {
 
   constructor(  private personaService: PersonaService,
                 private estudiosService: EstudiosService,
+                private authService: AuthService,
                 private router: Router ) { }
 
   ngOnInit(): void {
-    this.personaService.getPersona( 1 ).subscribe( (persona) => this.persona = persona );
+    this.personaService.getPersonaByUsername( this.authService.usuario.username ).subscribe( (persona) => this.persona = persona );
   }
 
   agregar() {
@@ -50,7 +52,7 @@ export class ListadoComponent implements OnInit {
         this.estudiosService.delete(estudio.id).subscribe(
           response => {
 
-            this.personaService.getPersona( 1 ).subscribe( (persona) => this.persona = persona );
+            this.personaService.getPersonaByUsername( this.authService.usuario.username ).subscribe( (persona) => this.persona = persona );
 
             swal(
               'Estudio Eliminado!',

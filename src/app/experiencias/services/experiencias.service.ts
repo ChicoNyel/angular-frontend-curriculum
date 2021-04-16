@@ -57,7 +57,7 @@ export class ExperienciasService {
   }
 
   create(experiencia: Experiencia): Observable<Experiencia> {
-    return this.http.post( `${ this.urlEndPoint }/${ 1 }`, experiencia, {headers: this.agregarAuthorizationHeader()} )
+    return this.http.post( `${ this.urlEndPoint }/${ this.authService.usuario.username }`, experiencia, {headers: this.agregarAuthorizationHeader()} )
         .pipe(
           map( (response: any) => response.experiencia as Experiencia ),
           catchError( e => {
