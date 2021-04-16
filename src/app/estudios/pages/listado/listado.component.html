@@ -5,6 +5,7 @@
 <div class="my-2 text-left">
   <button class="btn btn-rounded btn-primary"
           type="button"
+          *ngIf="authService.hasRole('ROLE_USER')"
           (click)="agregar()">Agregar Estudio</button>
 </div>
 
@@ -33,6 +34,7 @@
 
     <button type="button"
             name="editar"
+            *ngIf="authService.hasRole('ROLE_USER')"
             [routerLink]="[ '/estudios/agregar' , estudio.id ]"
             class="btn btn-warning m-1">
         Editar
@@ -40,6 +42,7 @@
 
     <button type="button"
             name="eliminar"
+            *ngIf="authService.hasRole('ROLE_USER')"
             (click)="delete( estudio )"
             class="btn btn-danger m-1">
         Eliminar

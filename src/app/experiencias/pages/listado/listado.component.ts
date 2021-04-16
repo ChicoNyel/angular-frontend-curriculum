@@ -19,7 +19,7 @@ export class ListadoComponent implements OnInit {
 
   constructor(  private personaService: PersonaService,
                 private experienciasService: ExperienciasService,
-                private authService: AuthService,
+                public authService: AuthService,
                 private router: Router ) { }
 
   ngOnInit(): void {

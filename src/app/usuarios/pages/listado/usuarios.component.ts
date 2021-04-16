@@ -16,7 +16,7 @@ export class UsuariosComponent implements OnInit {
 
   constructor( private personaService: PersonaService,
                private modalService: ModalService,
-               private authService: AuthService ) { }
+               public authService: AuthService ) { }
 
   ngOnInit(): void {
 

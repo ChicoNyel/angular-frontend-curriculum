@@ -2,7 +2,8 @@ import { ExperienciasRoutingModule } from './experiencias/experiencias-routing.m
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { registerLocaleData } from '@angular/common';
 import localeES from '@angular/common/locales/es';
@@ -15,8 +16,9 @@ import { FooterComponent } from './footer/footer.component';
 import { ConocimientosModule } from './conocimientos/conocimientos.module';
 import { EstudiosModule } from './estudios/estudios.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './seguridad/login.component';
+import { TokenInterceptor } from './seguridad/interceptors/token.interceptor';
+import { AuthInterceptor } from './seguridad/interceptors/auth.interceptor';
 
 
 
@@ -39,7 +41,20 @@ import { LoginComponent } from './seguridad/login.component';
     FormsModule
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'es'}
+    {
+      provide: LOCALE_ID,
+      useValue: 'es'
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

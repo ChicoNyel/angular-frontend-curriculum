@@ -18,7 +18,7 @@ export class ListadoComponent implements OnInit {
   public conocimiento: Conocimiento = new Conocimiento();
 
   constructor(  private personaService: PersonaService,
-                private authService: AuthService,
+                public authService: AuthService,
                 private conocimientoService: ConocimientosService,
                 private router: Router ) { }
 
